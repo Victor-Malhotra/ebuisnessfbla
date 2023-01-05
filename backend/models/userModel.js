@@ -40,6 +40,10 @@ const UserSchema = mongoose.Schema({
   contact:{
     type:String,
     default:''
+  },
+  admin: {
+    type: Boolean,
+    default: false
   }
 });
 
