@@ -3,8 +3,10 @@ import LabeledDropdown from './LabeledDropdown';
 import ProductDetailPros from './ProductDetailPros';
 import Rating from './Rating';
 import { Link } from 'react-router-dom';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { FaCalendarAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
+import DateReserve from './DateReserve';
+import { useState } from 'react';
 
 function ProductDetailInformation({
   pros,
@@ -19,6 +21,7 @@ function ProductDetailInformation({
   discount,
   description,
 }) {
+  const [dateVisible, setDateVisible] = useState(false);
   return (
     <div className=''>
       <Link to={`/profile?id=${creatorID}`} className='hidden xl:block'>
@@ -65,22 +68,33 @@ function ProductDetailInformation({
       </div>
       <Availability
         type={status == 'Instock'}
-        labels={['Instock', 'Unavailable']}
+        labels={['Available', 'Unavailable']}
       />
+      <h3 className='text-2xl mb-4'>Overview</h3>
       <div className='text-[#eee] font-normal leading-7 max-w-2xl'>
         {description}
       </div>
       <ProductDetailPros data={pros} />
-      <div className='flex items-center gap-8'>
+      {/* <div className='flex items-center gap-8'>
         <LabeledDropdown label={'Quantity'} data={[1, 2, 3, 4, 5]} />
         <LabeledDropdown label={'Size'} data={['Small', 'Medium', 'Large']} />
-      </div>
-      <Link to={`/chat/${creatorID}`}>
-        <button className='btn-primary mt-8 w-full mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition text-neutral-100 font-semibold flex items-center justify-center gap-4'>
-          <AiOutlineShoppingCart />
-          <p>Purchase</p>
-        </button>
-      </Link>
+      </div> */}
+      <button
+        className='btn-primary mt-8 w-full mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition text-neutral-100 font-semibold flex items-center justify-center gap-4 relative'
+        onClick={(e) => {
+          e.preventDefault();
+          setDateVisible(!dateVisible);
+        }}>
+        <FaCalendarAlt />
+        <p>Reserve A Date</p>
+        <div
+          className={`absolute top-[-21.5rem] 
+          
+          `}>
+          <DateReserve />
+          {/* ${dateVisible ? 'opacity-100' : 'opacity-0'} */}
+        </div>
+      </button>
     </div>
   );
 }
