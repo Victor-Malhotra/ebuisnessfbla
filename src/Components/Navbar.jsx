@@ -67,20 +67,17 @@ export default function Navbar() {
             to='/products'
             className='text-left hover:bg-slate-400 text-2xl bg-none hover:text-gray-200 transition p-6'>
             <AiFillWallet className='inline-block mr-1 mb-1' />
-            All Products
+            All Rooms
           </Link>
-          <Link
-            to='/addEdit'
-            className='text-left hover:bg-slate-400 text-2xl bg-none hover:text-gray-200 transition p-6'>
-            <FaWrench className='inline-block mr-1 mb-1' />
-            Add Products
-          </Link>
-          <Link
-            to='/chat'
-            className='text-left hover:bg-slate-400 text-2xl bg-none hover:text-gray-200 transition p-6'>
-            <AiFillCalendar className='inline-block mr-1 mb-1' />
-            Chat
-          </Link>
+          {state.user.admin && (
+            <Link
+              to='/addEdit'
+              className='text-left hover:bg-slate-400 text-2xl bg-none hover:text-gray-200 transition p-6'>
+              <FaWrench className='inline-block mr-1 mb-1' />
+              Add Rooms
+            </Link>
+          )}
+
           <Link
             to='/about'
             className='text-left hover:bg-slate-400 text-2xl bg-none hover:text-gray-200 transition p-6'>
@@ -119,18 +116,15 @@ export default function Navbar() {
         <Link
           to='/products'
           className='hidden md:inline-block mr-5 bg-none text-gray-300 hover:text-gray-200 transition-colors'>
-          All Products
+          All Rooms
         </Link>
-        <Link
-          to='/addEdit'
-          className='hidden md:inline-block mr-5 bg-none text-gray-300 hover:text-gray-200 transition-colors'>
-          Add Products
-        </Link>
-        <Link
-          to='/chat'
-          className='hidden md:inline-block mr-5 bg-none text-gray-300 hover:text-gray-200 transition-colors'>
-          Chat
-        </Link>
+        {state.user.admin && (
+          <Link
+            to='/addEdit'
+            className='hidden md:inline-block mr-5 bg-none text-gray-300 hover:text-gray-200 transition-colors'>
+            Add Rooms
+          </Link>
+        )}
         <Link
           to='/about'
           className='hidden md:inline-block mr-5 bg-none text-gray-300 hover:text-gray-200 transition-colors'>
