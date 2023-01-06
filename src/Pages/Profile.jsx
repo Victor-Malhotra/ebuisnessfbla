@@ -16,7 +16,7 @@ function Profile() {
   const [loading, setLoading] = useState(true);
   const [userProducts, setUserProducts] = useState([]);
   const [userData, setUserData] = useState(null);
-  const [userReceipts,setUserReceipts] = useState([])
+  const [userReceipts, setUserReceipts] = useState([]);
   const [userFavorites, setUserFavorites] = useState([]);
   const basePath = 'https://res.cloudinary.com/dztnsrrta/image/upload/';
 
@@ -25,17 +25,19 @@ function Profile() {
     if (localStorage.getItem('user') && state) {
       setLoading(true);
       let userID = window.location.search.substring(4);
-      
+
       if (
         userID.length > 10 &&
         userID != JSON.parse(localStorage.getItem('user'))._id
       ) {
-        sendRequest("user/getReceipts","POST",{
-          body:{
-            user:localStorage.getItem("token"),
-            receiptPage:0
-          }
-        }).then((res)=>{console.log(res)})
+        sendRequest('user/getReceipts', 'POST', {
+          body: {
+            user: localStorage.getItem('token'),
+            receiptPage: 0,
+          },
+        }).then((res) => {
+          console.log(res);
+        });
         sendRequest('user/show', 'POST', {
           body: {
             user: userID,
@@ -85,7 +87,7 @@ function Profile() {
   return (
     !loading &&
     userData !== null && (
-      <div className='w-full flex flex-col gap-12 py-8 px-6 bg-[#404959] text-[#eee]'>
+      <div className='w-full flex flex-col gap-12 py-8 px-6 bg-[#404959] text-[#eee] min-h-[94.25vh]'>
         <div className='flex gap-12 items-center flex-col xl:flex-row'>
           {/* <ProfileInfoCard image={"https://picsum.photos/400"} username={context.username} joinDate={context.joinDate} location={`${context.Location[0]}, ${context.Location[1]}`} rating={0} ratingCount={0} bought={0} sold={0}/> */}
           <ProfileInfoCard
@@ -170,29 +172,6 @@ function Profile() {
             }
           </ResponsiveGridDisplay>
         </div>
-        <RecentPurchases>
-          {new Array(7).fill().map((_, idx) => {
-            return (
-              <PurchaseReceipt
-                key={idx}
-                location={'Los Angeles, CA'}
-                email='tb123@gmail.com'
-                buyer='Trent Block'
-                seller='Microsoft'
-                logo='https://picsum.photos/400?random=0'
-                date={new Date().toDateString()}
-                items={[
-                  {
-                    name: 'Gaming Laptop',
-                    quantity: '1',
-                    cost: '375',
-                    description: 'A cool laptop!',
-                  },
-                ]}
-              />
-            );
-          })}
-        </RecentPurchases>
       </div>
     )
   );

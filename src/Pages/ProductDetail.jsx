@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 function ProductDetail() {
   const [productData, setProductData] = useState({});
   const [userData, setUserData] = useState({});
+  const [dateVisible, setDateVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const productID = window.location.search.substring(4);
@@ -31,7 +32,12 @@ function ProductDetail() {
     });
   }, [loading]);
   return !loading && userData.success !== false ? (
-    <div className='p-8 xl:p-16 grid bg-[#404959] text-[#eee] w-full grid-cols-1 md:gap-4 xl:grid-cols-[auto_auto] xl:justify-center xl:gap-48 items-start justify-items-center min-h-[calc(100vh_-_56px)]'>
+    <div
+      className='p-8 xl:p-16 grid bg-[#404959] text-[#eee] w-full grid-cols-1 md:gap-4 xl:grid-cols-[auto_auto] xl:justify-center xl:gap-48 items-start justify-items-center min-h-[calc(100vh_-_56px)]'
+      onClick={(e) => {
+        if (!e.target.classList.contains('DATE') && dateVisible)
+          setDateVisible(false);
+      }}>
       <Link
         to={`/profile?id=${productData.creatorID}`}
         className='block xl:hidden'>
@@ -78,6 +84,8 @@ function ProductDetail() {
         price={productData.price}
         discount={productData.discount / 100}
         description={productData.description}
+        setDateVisible={setDateVisible}
+        dateVisible={dateVisible}
       />
     </div>
   ) : (

@@ -144,7 +144,7 @@ export default function Navbar() {
                 JSON.parse(localStorage.getItem('user')).icon
               }
               alt='Profile'
-              className='w-10 h-10 inline-block place-self-center rounded-full mr-2'
+              className='w-10 h-10 inline-block place-self-center rounded-full mr-2 object-cover'
             />
             <p className='inline-block mr-1'>
               {JSON.parse(localStorage.getItem('user')).username.split(

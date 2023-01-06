@@ -7,6 +7,8 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import propTypes from 'prop-types';
 import DateReserve from './DateReserve';
 import { useState } from 'react';
+import { addDays } from 'date-fns';
+import { MdOutlineArrowDropDown } from 'react-icons/md';
 
 function ProductDetailInformation({
   pros,
@@ -20,33 +22,27 @@ function ProductDetailInformation({
   price,
   discount,
   description,
+  setDateVisible,
+  dateVisible,
 }) {
-  const [dateVisible, setDateVisible] = useState(false);
+  const [data, setData] = useState({
+    selection: {
+      startDate: addDays(new Date(), 3),
+      endDate: addDays(new Date(), 7),
+      key: 'selection',
+    },
+  });
   return (
     <div className=''>
-      <Link to={`/profile?id=${creatorID}`} className='hidden xl:block'>
-        <div className='items-center gap-4 group cursor-pointer flex'>
-          <img
-            src={image}
-            alt='Profile Image'
-            className='rounded-full w-16 h-16'
-          />
-          <div>
-            <div className='text-lg font-normal no-underline text-blue-400 hover:text-blue-600 group-hover:underline'>
-              {company.charAt(0).toUpperCase() + company.slice(1)}
-            </div>
-            <p className='text-[#eee] text-sm'>Member Since {memberSince}</p>
-          </div>
-        </div>
-      </Link>
-      <div className='my-8 border h-[1px] w-3/4 mx-auto hidden xl:flex'></div>
-      <h2 className='text-2xl mb-6 mt-2 font-semibold w-max hidden md:block'>
+      <h2 className='text-4xl mb-6 mt-2 font-semibold hidden md:block w-max'>
         {title}
       </h2>
       <div className='flex gap-4 mb-6 w-max mx-auto md:mx-0'>
-        <Rating rating={2.5} /> <p className='font-bold text-[#eee]'>·</p>{' '}
-        <p className='text-[#eee]'>{reviewsCount} Customer Reviews</p>
+        <p className='text-[#eee] text-xl'>
+          12 guests · 5 bedrooms · 7 beds · 2 baths
+        </p>
       </div>
+      <div className='my-8 border h-[1px] w-3/4 hidden xl:flex'></div>
       <div className='mb-2 w-max'>
         <p
           className={`text-red-400 font-bold text-sm mb-1 ${
@@ -79,22 +75,39 @@ function ProductDetailInformation({
         <LabeledDropdown label={'Quantity'} data={[1, 2, 3, 4, 5]} />
         <LabeledDropdown label={'Size'} data={['Small', 'Medium', 'Large']} />
       </div> */}
-      <button
-        className='btn-primary mt-8 w-full mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition text-neutral-100 font-semibold flex items-center justify-center gap-4 relative'
-        onClick={(e) => {
-          e.preventDefault();
-          setDateVisible(!dateVisible);
-        }}>
-        <FaCalendarAlt />
-        <p>Reserve A Date</p>
-        <div
-          className={`absolute top-[-21.5rem] 
-          
-          `}>
-          <DateReserve />
-          {/* ${dateVisible ? 'opacity-100' : 'opacity-0'} */}
+      <div className='flex gap-4'>
+        <div className='basis-full'>
+          <p className='text-center text-sm'>
+            Selected {data.selection.startDate.toDateString()} {' - '}
+            {data.selection.endDate.toDateString()}
+          </p>
+
+          <button
+            className='btn-primary mt-2 w-full mx-auto mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition font-semibold flex items-center justify-center gap-4 relative'
+            onClick={(e) => {
+              e.preventDefault();
+              setDateVisible(!dateVisible);
+            }}>
+            <FaCalendarAlt />
+            <p>Select A Date</p>
+            <div className={`absolute top-[-25rem]`}>
+              <DateReserve
+                dateVisible={dateVisible}
+                data={data}
+                setData={setData}
+              />
+              {/* ${dateVisible ? 'opacity-100' : 'opacity-0'} */}
+            </div>
+          </button>
         </div>
-      </button>
+        <div className='basis-full'>
+          <p className='text-center text-sm'>1 Guest</p>
+          <button className='btn-primary mt-2 w-full mx-auto mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition font-semibold flex items-center justify-center gap-1 relative'>
+            Select Guests
+            <MdOutlineArrowDropDown className='text-xl' />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import {
   Routes as Switch,
   Route,
   useNavigate,
-  useLocation
+  useLocation,
 } from 'react-router-dom';
 import { FaRegHeart } from 'react-icons/fa';
 import DataOverview from './Components/DataOverview';
@@ -46,7 +46,7 @@ const App = () => {
   return (
     <FavoritesProvider>
       <Provider>
-        <div className='App pt-14'>
+        <div className='App pt-14 min-h-screen'>
           <Router>
             <NavBar />
             <Switch>
@@ -141,7 +141,7 @@ const App = () => {
               <Route path='/addEdit' element={<AddEditProduct />} />
               <Route path='/customers' element={<Customers />}></Route>
               <Route path='/profile' element={<Profile />}></Route>
-              <Route path='/products' element={<Products />}></Route> 
+              <Route path='/products' element={<Products />}></Route>
             </Switch>
           </Router>
           {/* <div className='flex gap-8'>

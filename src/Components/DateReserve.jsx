@@ -4,25 +4,26 @@ import { DateRangePicker } from 'react-date-range';
 import { addDays } from 'date-fns';
 import { useState } from 'react';
 
-function DateReserve() {
-  const [data, setData] = useState({
-    selection: {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
-      key: 'selection',
-    },
-  });
+function DateReserve({ dateVisible, data, setData }) {
   return (
-    <div onClick={(e) => e.stopPropagation()}>
-      <DateRangePicker
-        onChange={(item) => setData({ ...data, ...item })}
-        showMonthAndYearPickers={false}
-        minDate={addDays(new Date(), 0)}
-        maxDate={addDays(new Date(), 90)}
-        direction='vertical'
-        scroll={{ enabled: true }}
-        ranges={[data.selection]}
-      />
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className={`${
+        dateVisible
+          ? 'shadow-[0px_0px_5000px_5000px_rgba(0,0,0,0.3)]'
+          : 'shadow-[0px_0px_5000px_5000px_rgba(0,0,0,0)]'
+      } transition-shadow duration-300 text-black`}>
+      {dateVisible && (
+        <DateRangePicker
+          onChange={(item) => setData({ ...data, ...item })}
+          showMonthAndYearPickers={false}
+          minDate={addDays(new Date(), 0)}
+          maxDate={addDays(new Date(), 90)}
+          direction='vertical'
+          scroll={{ enabled: true }}
+          ranges={[data.selection]}
+        />
+      )}
     </div>
   );
 }
