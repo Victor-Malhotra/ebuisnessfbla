@@ -5,14 +5,14 @@ const { updateToken, checkToken } = require('./controllers/auth');
 const app = express();
 const cors = require('cors');
 const fs = require('fs');
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 //routers
 const userRouter = require('./Routes/user');
 const productRouter = require('./Routes/product');
-const {router} = require('./Routes/chat');
-const chatRouter=router;
+const { router } = require('./Routes/chat');
+const chatRouter = router;
 //admin page
 const adminPage = fs.readFileSync(__dirname + '/interface/index.html', 'utf-8');
-
 
 /**
  * App
@@ -21,6 +21,38 @@ app.use(cors());
 app.options('*', cors());
 
 app.use(express.text({ limit: '26mb' }));
+
+app.post('/create-checkout-session', async (req, res) => {
+  try {
+    const { name, priceInCents, quantity, description, images } = JSON.parse(
+      req.body
+    ).item;
+    console.log(images);
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      success_url: 'http://localhost:3000/thanks',
+      cancel_url: 'http://localhost:3000/products',
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name,
+              description,
+              images,
+            },
+            unit_amount: priceInCents,
+          },
+          quantity,
+        },
+      ],
+    });
+    res.status(200).json({ url: session.url });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 app.post('/token', async (req, res) => {
   const userToken = req.get('token');
@@ -55,6 +87,4 @@ app.use('/chat', chatRouter);
 const server = app.listen(process.env.PORT, () => {
   console.log(`server is running on port ${process.env.PORT}`);
 });
-require('./middleware/chat')(server)
-
-
+require('./middleware/chat')(server);

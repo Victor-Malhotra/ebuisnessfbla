@@ -165,11 +165,11 @@ function LandingPage() {
         // console.log("front end req sent");
         swal({
           title: `Email Confirmation Sent to ${state.email}`,
-          text: "Please Sign in after Account Confirmation",
-          icon: "success",
-          button: "Cool!"
-        })
-        await sendRequest("user/createAccount", "POST", {
+          text: 'Please Sign in after Account Confirmation',
+          icon: 'success',
+          button: 'Cool!',
+        });
+        await sendRequest('user/createAccount', 'POST', {
           body: {
             email: state.email,
             password: state.password,
@@ -235,7 +235,7 @@ function LandingPage() {
     <section ref={section} className=''>
       <div
         ref={mover}
-        className='overflow-y-hidden md:overflow-x-hidden md:grid h-screen md:grid-cols-[50%_50%_50%] lg:md:grid-cols-[70%_30%_70%] -mt-14 relative delay-200 duration-[600ms] ease-in-out md:translate-x-[0%]'>
+        className='overflow-y-hidden md:overflow-x-hidden md:grid h-screen md:grid-cols-[50%_50%_50%] lg:md:grid-cols-[70%_30%_70%] relative delay-200 duration-[600ms] ease-in-out md:translate-x-[0%]'>
         <div
           ref={hero}
           className='h-full pt-6 transition duration-300 hidden p-1 w-full text-center md:flex flex-col justify-center md:mt-0 md:mb-0 '>
@@ -297,8 +297,9 @@ function LandingPage() {
                 dispatch({ type: 'username', payload: e.target.value })
               }
               name='username'
-              className={`py-2  px-4 rounded w-9/12 text-neutral-900 ${state.userType === 'business' ? 'block' : 'hidden'
-                }`}
+              className={`py-2  px-4 rounded w-9/12 text-neutral-900 ${
+                state.userType === 'business' ? 'block' : 'hidden'
+              }`}
             />
             <input
               placeholder='Password'
@@ -318,8 +319,9 @@ function LandingPage() {
                 dispatch({ type: 'confirmPassword', payload: e.target.value })
               }
               name='confirmPassword'
-              className={`py-2 rounded w-9/12 px-4 text-neutral-900 ${state.userType === 'business' ? 'block' : 'hidden'
-                }`}
+              className={`py-2 rounded w-9/12 px-4 text-neutral-900 ${
+                state.userType === 'business' ? 'block' : 'hidden'
+              }`}
             />
             <input type='hidden' name='userType' value={state.userType} />
             {!loggingIn ? (

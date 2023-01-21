@@ -24,6 +24,7 @@ const {
 const { createBusiness } = require('../controllers/Business');
 const { ImNext } = require('react-icons/im');
 const { createAccount, linkAccount } = require('../middleware/stripe');
+const requestIp = require('request-ip');
 const router = express.Router();
 // router.use(express.urlencoded({extended:true}));
 //these do not require authentication since they relate to giving the user an auth token
@@ -44,7 +45,7 @@ router.post('/users', async (req, res) => {
 router.post('/createAccount', async (req, res) => {
   const userData = buildUserData(req);
   const Banner = await storeImage(JSON.parse(req.body).Banner, 'temp');
-
+  console.log(requestIp.getClientIp(req));
   if (Banner != null) {
     userData.businessData = JSON.parse(userData.businessData);
     userData.businessData.BannerLink = Banner;

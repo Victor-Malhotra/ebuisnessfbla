@@ -9,12 +9,15 @@ import DateReserve from './DateReserve';
 import { useState } from 'react';
 import { addDays } from 'date-fns';
 import { MdOutlineArrowDropDown } from 'react-icons/md';
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
+import { sendRequest } from '../Utils/requests';
 
 function ProductDetailInformation({
   pros,
   status,
   company,
   image,
+  alternateImages,
   memberSince,
   creatorID,
   title,
@@ -32,6 +35,32 @@ function ProductDetailInformation({
       key: 'selection',
     },
   });
+
+  const [guests, setGuests] = useState(1);
+
+  const handleCheckout = async () => {
+    sendRequest('create-checkout-session', 'POST', {
+      body: {
+        item: {
+          name: title,
+          priceInCents: Number(price) * 100,
+          quantity: 1,
+          description,
+          images: alternateImages,
+        },
+      },
+    })
+      .then((res) => {
+        if (res) {
+          window.location = JSON.parse(res).url;
+        }
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
+  };
+
   return (
     <div className=''>
       <h2 className='text-4xl mb-6 mt-2 font-semibold hidden md:block w-max'>
@@ -71,43 +100,52 @@ function ProductDetailInformation({
         {description}
       </div>
       <ProductDetailPros data={pros} />
-      {/* <div className='flex items-center gap-8'>
-        <LabeledDropdown label={'Quantity'} data={[1, 2, 3, 4, 5]} />
-        <LabeledDropdown label={'Size'} data={['Small', 'Medium', 'Large']} />
-      </div> */}
-      <div className='flex gap-4'>
-        <div className='basis-full'>
-          <p className='text-center text-sm'>
-            Selected {data.selection.startDate.toDateString()} {' - '}
-            {data.selection.endDate.toDateString()}
+      <div className='basis-full grid grid-cols-2 grid-rows-2 mb-4'>
+        <p className='text-center text-sm self-end'>
+          Selected {data.selection.startDate.toDateString()}
+          {data.selection.startDate.getTime() !==
+            data.selection.endDate.getTime() &&
+            `- ${data.selection.endDate.toDateString()}`}
+        </p>
+        {/* <div className='grid grid-cols-2 items-center'> */}
+        <button
+          className='btn-primary row-start-2 w-full mx-auto mt-2 py-2 rounded bg-blue-500 hover:bg-blue-600 transition font-semibold flex items-center justify-center gap-4 relative'
+          onClick={(e) => {
+            e.preventDefault();
+            setDateVisible(!dateVisible);
+          }}>
+          <FaCalendarAlt />
+          <p>Select A Date</p>
+          <div className={`absolute top-[-25rem]`}>
+            <DateReserve
+              dateVisible={dateVisible}
+              data={data}
+              setData={setData}
+            />
+            {/* ${dateVisible ? 'opacity-100' : 'opacity-0'} */}
+          </div>
+        </button>
+        <div className='flex gap-4 items-center justify-center row-start-2 col-start-2'>
+          <AiOutlineMinusCircle
+            className='text-2xl cursor-pointer text-blue-400 hover:text-blue-500 transition'
+            onClick={() => guests > 1 && setGuests((g) => g - 1)}
+          />
+          <p className='text-center self-center'>
+            {guests} Guest{guests !== 1 && 's'}
           </p>
-
-          <button
-            className='btn-primary mt-2 w-full mx-auto mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition font-semibold flex items-center justify-center gap-4 relative'
-            onClick={(e) => {
-              e.preventDefault();
-              setDateVisible(!dateVisible);
-            }}>
-            <FaCalendarAlt />
-            <p>Select A Date</p>
-            <div className={`absolute top-[-25rem]`}>
-              <DateReserve
-                dateVisible={dateVisible}
-                data={data}
-                setData={setData}
-              />
-              {/* ${dateVisible ? 'opacity-100' : 'opacity-0'} */}
-            </div>
-          </button>
+          <AiOutlinePlusCircle
+            className='text-2xl cursor-pointer text-blue-400 hover:text-blue-500 transition'
+            onClick={() => setGuests((g) => g + 1)}
+          />
         </div>
-        <div className='basis-full'>
-          <p className='text-center text-sm'>1 Guest</p>
-          <button className='btn-primary mt-2 w-full mx-auto mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition font-semibold flex items-center justify-center gap-1 relative'>
-            Select Guests
-            <MdOutlineArrowDropDown className='text-xl' />
-          </button>
-        </div>
+        {/* </div> */}
       </div>
+
+      <button
+        className='btn-primary mt-2 w-full mx-auto mb-5 py-2 rounded bg-blue-500 hover:bg-blue-600 transition font-semibold flex items-center justify-center gap-1 relative'
+        onClick={() => handleCheckout()}>
+        Reserve
+      </button>
     </div>
   );
 }

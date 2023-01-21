@@ -33,7 +33,7 @@ function ProductDetail() {
   }, [loading]);
   return !loading && userData.success !== false ? (
     <div
-      className='p-8 xl:p-16 grid bg-[#404959] text-[#eee] w-full grid-cols-1 md:gap-4 xl:grid-cols-[auto_auto] xl:justify-center xl:gap-48 items-start justify-items-center min-h-[calc(100vh_-_56px)]'
+      className='p-8 xl:p-16 grid bg-[#404959] text-[#eee] w-full grid-cols-1 md:gap-4 xl:grid-cols-[auto_auto] xl:justify-center xl:gap-48 items-start justify-items-center min-h-scren'
       onClick={(e) => {
         if (!e.target.classList.contains('DATE') && dateVisible)
           setDateVisible(false);
@@ -78,6 +78,9 @@ function ProductDetail() {
         image={
           'https://res.cloudinary.com/dztnsrrta/image/upload/' + userData.icon
         }
+        alternateImages={productData.images.map(
+          (i) => 'https://res.cloudinary.com/dztnsrrta/image/upload/' + i
+        )}
         memberSince={userData.joinDate}
         title={productData.name}
         reviewsCount={0}

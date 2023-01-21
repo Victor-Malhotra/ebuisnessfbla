@@ -27,6 +27,7 @@ import { Provider as FavoritesProvider } from './Context/favoritesContext';
 import { Provider } from './Context/userContext';
 import { useEffect } from 'react';
 import Chat from './Pages/Chat';
+import PurchaseSuccess from './Components/PurchaseSuccess';
 
 const App = () => {
   // const [user, setUser] = useState('');
@@ -46,13 +47,14 @@ const App = () => {
   return (
     <FavoritesProvider>
       <Provider>
-        <div className='App pt-14 min-h-screen'>
+        <div className='App min-h-screen'>
           <Router>
             <NavBar />
             <Switch>
               <Route path='/' element={<Products />} />
               <Route path='/home' element={<TotalRevenue />} />
               <Route path='/login' element={<LandingPage />} />
+              <Route path='/thanks' element={<PurchaseSuccess />} />
               <Route path='/chat/:chatID' element={<Chat />} />
               <Route path='/chat' element={<Chat />} />
               <Route path='/about' element={<AboutPage />} />

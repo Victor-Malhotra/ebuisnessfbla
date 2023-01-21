@@ -127,7 +127,7 @@ function AddEditProduct() {
     }
   };
   return (
-    <div className='mt-[-.5rem] font-semibold text-2xl p-8 bg-[#404959] text-[#eee] min-h-[calc(100vh_-_3rem)]'>
+    <div className='mt-[-.5rem] font-semibold text-2xl p-8 bg-[#404959] text-[#eee] min-h-screen'>
       <h2 className='mb-8'>{isAdding ? 'Add' : 'Update'} Product</h2>
       <form
         onSubmit={(e) => handleSubmit(e)}

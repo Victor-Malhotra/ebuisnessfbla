@@ -21,8 +21,9 @@ function Products() {
 
   return (
     !loading && (
-      <div className='mt-[-.5rem]p-8 bg-[#404959] text-[#eee] min-h-[calc(100vh_-_3.5rem)]'>
+      <div className='mt-[-.5rem]p-8 bg-[#404959] text-[#eee] min-h-screen'>
         <h2 className='font-bold text-3xl ml-8 py-6'>Rooms Available</h2>
+        <SearchBar search={search} setSearch={setSearch} />
         <div className='p-4 pt-0'>
           <ResponsiveGridDisplay title={''}>
             {products.map((p, idx) => {
@@ -39,7 +40,8 @@ function Products() {
                       }
                       title={p.name}
                       price={p.price}
-                      location={p.Location}
+                      // location={p.Location}
+                      location={'Phoenix AZ'}
                       link={`/productDetail?id=${p._id}`}
                     />
                   );

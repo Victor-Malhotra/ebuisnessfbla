@@ -17,7 +17,7 @@ export default function Navbar() {
   const { state } = useContext(userContext);
 
   useEffect(() => {
-    setUserData(state.user);
+    setUserData(JSON.parse(localStorage.getItem('user')));
   }, []);
 
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ export default function Navbar() {
             <AiFillWallet className='inline-block mr-1 mb-1' />
             All Rooms
           </Link>
-          {state.user.admin && (
+          {state.user && state.user.admin && (
             <Link
               to='/addEdit'
               className='text-left hover:bg-slate-400 text-2xl bg-none hover:text-gray-200 transition p-6'>
@@ -118,7 +118,7 @@ export default function Navbar() {
           className='hidden md:inline-block mr-5 bg-none text-gray-300 hover:text-gray-200 transition-colors'>
           All Rooms
         </Link>
-        {state.user.admin && (
+        {JSON.parse(localStorage.getItem('user'))?.admin && (
           <Link
             to='/addEdit'
             className='hidden md:inline-block mr-5 bg-none text-gray-300 hover:text-gray-200 transition-colors'>
