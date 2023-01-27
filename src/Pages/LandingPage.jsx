@@ -240,17 +240,17 @@ function LandingPage() {
           ref={hero}
           className='h-full pt-6 transition duration-300 hidden p-1 w-full text-center md:flex flex-col justify-center md:mt-0 md:mb-0 '>
           <img
-            src={require('../assets/testingsvg.PNG')}
-            className='object-cover mx-auto w-3/4'
+            src={require('../assets/bk.png')}
+            className='object-cover mx-auto w-3/4 mb-8'
             alt=''
           />
           <h2 className='text-4xl font-semibold mb-4 text-blue-900 w-[90%] mx-auto'>
-            Software Analytics and Marketing Statistics
+            Local Bed and Breakfast
           </h2>
           <p className='text-slate-400 mb-5 md:mb-0 w-[90%] mx-auto'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, est.
-            Lorem, ipsum. <br />
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            A variety of high quality rooms for low prices
+            <br />
+            Login or Signup to purchase a room today
           </p>
         </div>
 
