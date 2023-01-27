@@ -138,9 +138,9 @@ function AddEditProduct() {
             dispatch={formDispatch}
             header='General'
             data={[
-              { name: 'Product Name', type: 'text' },
+              { name: 'Room Name', type: 'text' },
               { name: 'Price', type: 'number' },
-              { name: 'Product Description', type: 'textarea' },
+              { name: 'Room Description', type: 'textarea' },
               { name: 'Discount', type: 'limitedNumber' },
               { name: 'Status', type: 'radio' },
             ]}
@@ -150,7 +150,7 @@ function AddEditProduct() {
           <ProductModifySection
             state={formState}
             dispatch={formDispatch}
-            header='Product Images'
+            header='Room   Images'
             data={[{ name: 'Image', type: 'image' }]}
           />
         </div>
