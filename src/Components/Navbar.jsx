@@ -38,7 +38,7 @@ export default function Navbar() {
         {/* NEED THIS TO WORK */}
         {/* {!sideHidden && <div className="absolute md:hidden flex justify-start flex-col gap-y-3 p-2 w-3/4 h-3/4 bg-white translate-y-[3.75rem] translate-x-[-1.3rem] z-20"> */}
         <div
-          className={`text-white absolute md:hidden flex justify-start flex-col gap-y-3 bg-gray-700 translate-y-16 ${
+          className={`text-white absolute md:hidden flex justify-start flex-col gap-y-1 bg-gray-700 translate-y-16 ${
             sideHidden ? 'translate-x-[-15.3rem]' : 'translate-x-[-1.3rem]'
           } z-20`}
           style={{
@@ -49,12 +49,6 @@ export default function Navbar() {
             className='w-full text-2xl hover:bg-slate-400 p-6 transition'>
             <BsPerson className='inline-block m-auto mr-1 mb-1' />
             My Account
-          </Link>
-          <Link
-            to='/home'
-            className='w-full hover:bg-slate-400 text-2xl p-6 transition'>
-            <BsGearFill className='inline-block m-auto mr-1 mb-1' />
-            Settings
           </Link>
           <Link
             className='w-full hover:bg-slate-400 text-2xl p-6 transition'
@@ -158,7 +152,7 @@ export default function Navbar() {
             />
             <div
               className={`z-20 absolute top-[1.75rem] -right-5 bg-gray-700 w-40 ${
-                navHidden ? 'h-0 p-0' : 'h-[8.5rem]'
+                navHidden ? 'h-0 p-0' : 'h-[6rem] '
               } rounded-b translate-y-5 overflow-hidden flex flex-col gap-y-1 items-center -bottom-50`}
               style={{ transition: 'all 0.6s cubic-bezier(0.75, 0, 0.25, 1)' }}>
               <Link
@@ -167,14 +161,6 @@ export default function Navbar() {
                 <div className='text-center px-4 w-full'>
                   <BsPerson className='inline-block m-auto mr-1' />
                   My Account
-                </div>
-              </Link>
-              <Link
-                to='/home'
-                className='hover:bg-slate-400 w-full py-2 transition'>
-                <div className='text-center px-4 w-full'>
-                  <BsGearFill className='inline-block m-auto mr-1' />
-                  Settings
                 </div>
               </Link>
               <Link
