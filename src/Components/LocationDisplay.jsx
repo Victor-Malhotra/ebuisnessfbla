@@ -4,7 +4,7 @@ import React from 'react'
 const LocationDisplay=({name,address,times,website, type, desc, driveThrough}) => {
   var originAddress = "902 W Grove Ave, Mesa, AZ 85210"
   return (
-    <div className='flex flex-row flex-wrap gap-5 items-center justify-start border-white border-2 border-solid rounded-lg p-2 px-10 my-5 mx-10 bg-[rgba(26,54,82,0.68)] shadow-2xl shadow-cyan-700 sm:gap-10 '>
+    <div className='flex flex-row flex-wrap gap-4 items-center justify-start border-white border-2 border-solid rounded-lg p-2 px-6 my-5 mx-4 bg-[rgba(26,54,82,0.68)] shadow-2xl shadow-cyan-700 sm:gap-9 '>
       <div>
         <h1 className='text-2xl'>{name}</h1>
         <h2 className='text-xl'>{type} type: {desc}</h2>
