@@ -111,7 +111,7 @@ function AboutPage() {
   additionalTransfrom={0}
   arrows
   autoPlay
-  autoPlaySpeed={5000}
+  autoPlaySpeed={9505}
   centerMode={false}
   className=""
   containerClass="container"
@@ -177,7 +177,7 @@ function AboutPage() {
   additionalTransfrom={1}
   arrows
   autoPlay
-  autoPlaySpeed={8505}
+  autoPlaySpeed={9505}
   centerMode={false}
   containerClass="container"
   dotListClass="text-white "
