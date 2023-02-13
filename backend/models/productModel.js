@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const ProductSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   images: {
     type: Array,
-    required: true
+    required: true,
   },
   pros: {
     type: Array,
-    required: true
+    required: true,
   },
   description: {
     type: String,
@@ -20,15 +20,15 @@ const ProductSchema = new mongoose.Schema({
   status: {
     type: String,
     required: true,
-    default: "Instock"
+    default: "Instock",
   },
   Location: {
     type: String,
-    default: 'Joe Mama Avenue'
+    default: "Phoenix AZ",
   },
   Tags: {
     type: Array,
-    default: []
+    default: [],
   },
   quantity: {
     type: Number,
@@ -44,13 +44,13 @@ const ProductSchema = new mongoose.Schema({
   },
   creatorID: {
     type: String,
-    required: true
+    required: true,
   },
   discount: {
     type: Number,
     default: 0,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Products", ProductSchema);

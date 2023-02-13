@@ -6,8 +6,10 @@ import swal from "sweetalert";
 import { sendRequest } from "../Utils/requests";
 import { getLocal, storeLocal } from "../Utils/useLocalStorageAuth";
 import propTypes from 'prop-types'
-function ProductCard({ id, type = "favorite", image, title, price, location, link }) {
-  const [favorited, setFavorited] = useState(false);
+function ProductCard({ id, type = "favorite", image, title, price, discount, location, link }) {
+  const [favorited,setFavorited]=useState(false);
+  
+  var discountedPrice=(price*(1-(discount/100))).toFixed(2)
 
   useEffect(() => {
     if (getLocal("user")) {
@@ -58,7 +60,7 @@ function ProductCard({ id, type = "favorite", image, title, price, location, lin
   return (
     <div
       onClick={(e)=>navigate(`/productDetail?id=${id}`)} 
-      className="flex flex-col justify-center gap-1 group cursor-pointer relative overflow-hidden mx-auto md:mx-0">
+      className="flex flex-col justify-center group cursor-pointer relative overflow-hidden  md:mx-0">
       {
         type === "favorite" ?
           <div className={`absolute top-4 left-4 text-2xl z-10 hover:scale-125 transition ${!favorited && "-translate-x-10"} group-hover:translate-x-0`}>
@@ -84,8 +86,13 @@ function ProductCard({ id, type = "favorite", image, title, price, location, lin
         <img src={image} alt={"Product"} className="rounded w-60 aspect-square object-cover" />
       </div>
       <p className="font-semibold text-lg group-hover:underline hover:underline">{title}</p>
-      <h3 className="text-base">${price}</h3>
-      <h3 className="text-sm text-slate-400">{location}</h3>
+      {discount>0?(
+        <h3 className="text-base text-white">${discountedPrice}&nbsp;&nbsp;<span className="text-sm text-slate-300">List Price: <span className="line-through">${price}</span>&nbsp; <span className="text-sm text-slate-200">&#123;{discount}% off&#125;</span></span></h3>
+      ):(
+        <h3 className="text-base">${price}</h3>
+      )}
+      
+      <h3 className="text-sm text-slate-200">{location}</h3>
     </div>
   )
 }
@@ -96,6 +103,7 @@ ProductCard.propTypes = {
   title: propTypes.string,
   price: propTypes.number,
   location: propTypes.string,
+  discount: propTypes.number,
   link: propTypes.string
 }
 

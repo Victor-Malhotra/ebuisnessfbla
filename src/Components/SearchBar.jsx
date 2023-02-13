@@ -14,11 +14,11 @@ export default function SearchBar({ search, setSearch }) {
             name='query'
             placeholder='Search...'
             className='p-3 rounded border-2  outline-none text-neutral-900'></input>
-          <div className='flex items-center'>
+          <div className='flex items-center text-gray-300'>
             <label htmlFor='filter' className='mr-3'>
               Sort By
             </label>
-            <select className='p-2 pl-3 pr-7 rounded border-2 text-neutral-900 outline-none m-0'>
+            <select className='p-2 pl-3 pr-7 rounded border-2 text-gray-300 outline-none m-0' disabled>
               <option defaultValue>All</option>
               <option value='Popular'>Popular</option>
               <option value='High Price'>High Price</option>

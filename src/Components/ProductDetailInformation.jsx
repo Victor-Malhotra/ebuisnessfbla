@@ -43,7 +43,7 @@ function ProductDetailInformation({
       body: {
         item: {
           name: title,
-          priceInCents: Number(price) * 100,
+          priceInCents: Number((price * (1 - discount)).toFixed(2)) * 100,
           quantity: 1,
           description,
           images: alternateImages,
