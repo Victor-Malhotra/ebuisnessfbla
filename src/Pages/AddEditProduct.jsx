@@ -154,26 +154,12 @@ function AddEditProduct() {
             data={[{ name: 'Image', type: 'image' }]}
           />
         </div>
-        <div className=''>
           <ProductModifySection
             state={formState}
             dispatch={formDispatch}
             header='Pros'
             data={[{ name: 'Pros', type: 'customAdd' }]}
           />
-          <ProductModifySection
-            state={formState}
-            dispatch={formDispatch}
-            header='Specifications'
-            data={[
-              {
-                name: 'Size',
-                type: 'dropdown',
-                items: ['Small', 'Medium', 'Large'],
-              },
-            ]}
-          />
-        </div>
         <button
           type='submit'
           className='btn-primary w-1/2 mx-auto py-2 rounded bg-blue-500 hover:bg-blue-600 transition text-neutral-100 font-semibold text-lg mb-2 lg:row-start-3 lg:col-span-2 3xl:col-start-2 3xl:row-auto 3xl:col-span-1'>

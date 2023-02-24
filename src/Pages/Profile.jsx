@@ -129,7 +129,8 @@ function Profile() {
           </div>
         </div>
         <div className='px-0 xl:px-20'>
-          <ResponsiveGridDisplay title={'Items From This Seller'}>
+        {JSON.parse(localStorage.getItem('user'))?.admin && (
+           <ResponsiveGridDisplay title={'Items From This Seller'}>
             {
               /* {new Array(25).fill().map((_,idx)=>{
             return <ProductCard key={idx} image={`https://picsum.photos/400?random=${idx+6}`} title={"Xbox Gaming Controller"} price={50} location={"Salt Lake City, UT"} link={"#"}/>
@@ -170,6 +171,8 @@ function Profile() {
               // }))
             }
           </ResponsiveGridDisplay>
+        )}
+         
         </div>
       </div>
     )

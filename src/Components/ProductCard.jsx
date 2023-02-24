@@ -82,12 +82,12 @@ function ProductCard({ id, type = "favorite", image, title, price, discount, loc
         // </div>
       }
       <div className="block relative">
-        <div className="absolute inset-0 bg-[#121212] opacity-[0.2] hidden group-hover:block"></div>
+        <div className="absolute inset-0 bg-[#121212] opacity-[0.5] hidden group-hover:block"></div>
         <img src={image} alt={"Product"} className="rounded w-60 aspect-square object-cover" />
       </div>
       <p className="font-semibold text-lg group-hover:underline hover:underline">{title}</p>
       {discount>0?(
-        <h3 className="text-base text-white">${discountedPrice}&nbsp;&nbsp;<span className="text-sm text-slate-300">List Price: <span className="line-through">${price}</span>&nbsp; <span className="text-sm text-slate-200">&#123;{discount}% off&#125;</span></span></h3>
+        <h3 className="text-base text-white">${discountedPrice}&nbsp;&nbsp;<span className="text-sm text-slate-300">List Price: <span className="line-through">${price}</span>&nbsp; <span className="text-sm text-green-200">&#123;{discount}% off&#125;</span></span></h3>
       ):(
         <h3 className="text-base">${price}</h3>
       )}

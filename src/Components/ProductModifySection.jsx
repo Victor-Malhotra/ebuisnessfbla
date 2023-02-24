@@ -82,9 +82,9 @@ function ProductModifySection({state, dispatch, header, data}) {
                     <p className='font-semibold mb-2'>{name}</p>
                     <div className="flex items-center gap-2">
                     <input onChange={(e)=>dispatch({type:"status",payload:"Instock"})} type="radio" name="status" value={state.status} id="status-instock" checked={state.status!=="Unavailable"}/>
-                    <label htmlFor="status-instock">Instock</label>
+                    <label htmlFor="status-instock">Open</label>
                     <input onChange={(e)=>dispatch({type:"status",payload:"Unavailable"})} type="radio" name="status" value={state.status} id="status-unavailable" checked={state.status==="Unavailable"}/>
-                    <label htmlFor="status-unavailable">Unavailable</label>
+                    <label htmlFor="status-unavailable">Booked</label>
                 </div></div>
             }else if(type==="image"){
                 return <div className="text-base" key={id}>
