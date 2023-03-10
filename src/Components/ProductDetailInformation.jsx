@@ -27,6 +27,10 @@ function ProductDetailInformation({
   description,
   setDateVisible,
   dateVisible,
+  beds,
+  bedrooms,
+  baths,
+  allowedGuests,
 }) {
   const [data, setData] = useState({
     selection: {
@@ -68,7 +72,7 @@ function ProductDetailInformation({
       </h2>
       <div className='flex gap-4 mb-6 w-max mx-auto md:mx-0'>
         <p className='text-[#eee] text-xl'>
-          12 guests · 5 bedrooms · 7 beds · 2 baths
+          {allowedGuests} guests · {bedrooms} bedrooms · {beds} beds · {baths} baths
         </p>
       </div>
       <div className='my-8 border h-[1px] w-3/4 hidden xl:flex'></div>

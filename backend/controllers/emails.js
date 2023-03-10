@@ -1,12 +1,12 @@
-var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
-require('dotenv').config();
+var nodemailer = require("nodemailer");
+var smtpTransport = require("nodemailer-smtp-transport");
+require("dotenv").config();
 var transporter = nodemailer.createTransport(
   smtpTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
+    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
-      user: 'rgrang816@west-mec.org',
+      user: "rgrang816@west-mec.org",
       pass: process.env.NODEMAILER_PASS,
     },
   })
@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport(
 
 const sendEmail = (target, subject, contents) => {
   var mailOptions = {
-    from: 'rgrang816@west-mec.org',
+    from: "rgrang816@west-mec.org",
     to: target,
     subject: subject,
     html: contents,

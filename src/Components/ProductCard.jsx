@@ -71,10 +71,10 @@ function ProductCard({ id, type = "favorite", image, title, price, discount, loc
           :
           // <div className={`absolute top-4 left-4 text-2xl z-10 hover:scale-125 transition ${!favorited && "-translate-x-10"} group-hover:translate-x-0`}>
           <div className="z-10 text-2xl" onClick={(e) => e.stopPropagation()}>
-            <div style={{ boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )" }} className={`border-[rgba(37,99,235,0.18)] backdrop-blur-sm bg-[rgba(37,99,235,0.4)] text-white absolute top-4 left-4 transition -translate-x-20 group-hover:-translate-x-4 rounded-tr rounded-br pl-8 pr-2 py-1`}>
+            <div style={{ boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.21 )" }} className={`border-[rgba(37,99,235,0.18)] backdrop-blur-sm bg-[rgba(37,99,235,0.4)] text-white absolute top-4 left-4 transition -translate-x-20 group-hover:-translate-x-4 rounded-tr rounded-br pl-8 pr-2 py-1`}>
               <MdEdit className="hover:scale-125 transition" onClick={() => navigate(`/addEdit?id=${id}`)} />
             </div>
-            <div style={{ boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )" }} className={`border-[rgba(248,113,113,0.18)] backdrop-blur-sm bg-[rgba(248,113,113,0.4)] text-white absolute top-4 right-4 transition translate-x-20 group-hover:translate-x-4 rounded-tl rounded-bl pr-8 pl-2 py-1`}><MdDelete onClick={() => { handleDelete() }} className="hover:scale-125 transition" /></div>
+            <div style={{ boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.21 )" }} className={`border-[rgba(248,113,113,0.18)] backdrop-blur-sm bg-[rgba(248,113,113,0.4)] text-white absolute top-4 right-4 transition translate-x-20 group-hover:translate-x-4 rounded-tl rounded-bl pr-8 pl-2 py-1`}><MdDelete onClick={() => { handleDelete() }} className="hover:scale-125 transition" /></div>
           </div>
         // <div onClick={()=>setFavorited(!favorited)}>
         //   {favorited ? <AiFillHeart className="text-red-400"/> : <AiOutlineHeart className="text-red-400"/>}
@@ -82,7 +82,7 @@ function ProductCard({ id, type = "favorite", image, title, price, discount, loc
         // </div>
       }
       <div className="block relative">
-        <div className="absolute inset-0 bg-[#121212] opacity-[0.5] hidden group-hover:block"></div>
+        <div className="absolute inset-0 bg-[rgba(0,0,0,0.4)] opacity-[0.5.] hidden group-hover:block"></div>
         <img src={image} alt={"Product"} className="rounded w-60 aspect-square object-cover" />
       </div>
       <p className="font-semibold text-lg group-hover:underline hover:underline">{title}</p>

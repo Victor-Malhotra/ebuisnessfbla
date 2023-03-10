@@ -89,6 +89,10 @@ function ProductDetail() {
         description={productData.description}
         setDateVisible={setDateVisible}
         dateVisible={dateVisible}
+        beds={productData.bed}
+        baths={productData.bath}
+        bedrooms={productData.bedroom}
+        allowedGuests={productData.guests}
       />
     </div>
   ) : (

@@ -28,7 +28,11 @@ function AddEditProduct() {
         formDispatch({ type: 'price', payload: productData.price });
         formDispatch({ type: 'discount', payload: productData.discount });
         formDispatch({ type: 'description', payload: productData.description });
-        formDispatch({ type: 'status', payload: productData.status });
+        formDispatch({type: 'status',payload: productData.status});
+        formDispatch({type: 'guests',payload: productData.guests});
+        formDispatch({type: 'bedroom',payload: productData.bedroom});
+        formDispatch({type: 'bath',payload: productData.bath});
+        formDispatch({ type: 'bed', payload: productData.bed});
         productData.images &&
           productData.images.map((image, id) => {
             formDispatch({
@@ -55,6 +59,10 @@ function AddEditProduct() {
     images: [],
     pros: [],
     specifications: [],
+    bed: 1,
+    bath: 0,
+    bedroom: 1,
+    guests: 1,
   };
   const formReducer = (state, action) => {
     let data = [...state.images];
@@ -65,6 +73,10 @@ function AddEditProduct() {
       case 'description':
       case 'status':
       case 'pros':
+      case 'bed':
+      case 'bath':
+      case 'bedroom':
+      case 'guests':
       case 'specifications':
         return { ...state, [action.type]: action.payload };
       case 'addImages':
@@ -133,7 +145,7 @@ function AddEditProduct() {
         onSubmit={(e) => handleSubmit(e)}
         className='grid gap-8 justify-center grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 3xl:grid-cols-3'>
         <div className=''>
-          <ProductModifySection
+          <ProductModifySection 
             state={formState}
             dispatch={formDispatch}
             header='General'
@@ -143,6 +155,20 @@ function AddEditProduct() {
               { name: 'Room Description', type: 'textarea' },
               { name: 'Discount', type: 'limitedNumber' },
               { name: 'Status', type: 'radio' },
+            ]}
+          />
+        </div>
+         <div className='h-[100%]'>
+          <ProductModifySection 
+            className='h-[100%]'
+            state={formState}
+            dispatch={formDispatch}
+            header='Room Info'
+            data={[
+              { name: '# of Guests', type: 'guests' },
+              { name: '# of Bedrooms', type: 'bedroom' },
+              { name: '# of Beds', type: 'bed' },
+              { name: '#of Bathrooms', type: 'bath' },
             ]}
           />
         </div>

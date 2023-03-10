@@ -67,6 +67,26 @@ function ProductModifySection({state, dispatch, header, data}) {
                 <p className='text-[#eee] font-semibold mb-2 text-sm'>{name}</p>
                 <input value={state.price} onChange={(e)=>dispatch({type:"price",payload:e.target.value})} type='number' className="border-2 rounded p-2 bg-[#eee]"/>
             </div>
+            }else if(type==="guests"){
+                    return <div className="text-base text-neutral-800" key={id}>
+                <p className='text-[#eee] font-semibold mb-2 text-sm'>{name}</p>
+                <input value={state.guests} onChange={(e)=>dispatch({type:"guests",payload:e.target.value})} type='number' className="border-2 rounded p-2 bg-[#eee]"/>
+            </div>
+            }else if(type==="bed"){
+                    return <div className="text-base text-neutral-800" key={id}>
+                <p className='text-[#eee] font-semibold mb-2 text-sm'>{name}</p>
+                <input value={state.bed} onChange={(e)=>dispatch({type:"bed",payload:e.target.value})} type='number' className="border-2 rounded p-2 bg-[#eee]"/>
+            </div>
+            }else if(type==="bedroom"){
+                    return <div className="text-base text-neutral-800" key={id}>
+                <p className='text-[#eee] font-semibold mb-2 text-sm'>{name}</p>
+                <input value={state.bedroom} onChange={(e)=>dispatch({type:"bedroom",payload:e.target.value})} type='number' className="border-2 rounded p-2 bg-[#eee]"/>
+            </div>
+            }else if(type==="bath"){
+                    return <div className="text-base text-neutral-800" key={id}>
+                <p className='text-[#eee] font-semibold mb-2 text-sm'>{name}</p>
+                <input value={state.bath} onChange={(e)=>dispatch({type:"bath",payload:e.target.value})} type='number' className="border-2 rounded p-2 bg-[#eee]"/>
+            </div>
             }else if(type==="textarea"){
                 return <div className='text-base text-neutral-800' key={id}>
                 <p className='text-[#eee] font-semibold mb-2 text-sm'>{name}</p>

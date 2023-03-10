@@ -51,6 +51,26 @@ const ProductSchema = new mongoose.Schema({
     default: 0,
     required: true,
   },
+  bath: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  bed: {
+    type: Number,
+    default: 1,
+    required: true,
+  },
+  bedroom: {
+    type: Number,
+    default: 1,
+    required: true,
+  },
+  guests: {
+    type: Number,
+    default: 1,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Products", ProductSchema);
