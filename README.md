@@ -1,6 +1,7 @@
 # Welcome to uBarter!
 - To start the website up locally you just need to go to [src/Utils/requests.js](https://github.com/RogerRandomDev/reactfinal/blob/main/src/Utils/requests.js)  and switch the link to localhost:5000
 - Git clone the project or download it and run `npm i` then run `npm start` to start the website.
+- Use 4242 for the credit card information on checkout to test a successful purchase
 ## Features
 - Creation of dynamic rooms for any company
 - Ability to book these rooms on a specific date for a certain number of guests
